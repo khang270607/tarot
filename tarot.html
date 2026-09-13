@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ý Nghĩa 78 Lá Bài Tarot – Tra Cứu Chi Tiết Chuẩn Xác</title>
+  <meta name="description" content="Khám phá và tra cứu ý nghĩa 78 lá bài Tarot chuẩn xác: 22 lá Bộ Ẩn Chính (Major Arcana) và 56 lá Bộ Ẩn Phụ (Minor Arcana). Giải nghĩa xuôi, ngược, tình cảm, công việc và tài chính.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            midnight: '#0B0A12',
+            mystic: {
+              50: '#FAF5FF',
+              100: '#F3E8FF',
+              500: '#A855F7',
+              800: '#6B21A8',
+              900: '#3B0764',
+              950: '#140827',
+            },
+            gold: {
+              300: '#F5D77F',
+              400: '#E6C65A',
+              500: '#D4AF37',
+              600: '#B89228',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-midnight min-h-screen flex flex-col relative text-slate-100 selection:bg-amber-500/30 selection:text-amber-200">
+
+  <!-- Starfield Canvas Background -->
+  <canvas id="star-canvas"></canvas>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 w-full glass-panel border-b border-amber-500/10 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center space-x-2 group">
+        <span class="text-xl md:text-2xl font-bold font-mystic tracking-widest text-amber-300 group-hover:text-amber-200 transition-colors">
+          ✦ TAROT
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+        <a href="index.html" class="text-slate-300 hover:text-amber-300 flex items-center space-x-1.5 transition-colors">
+          <span>🔮</span>
+          <span>Bóc bài</span>
+        </a>
+        <a href="tarot.html" class="text-amber-400 font-semibold flex items-center space-x-1.5 transition-colors">
+          <span>📜</span>
+          <span>Các lá bài</span>
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-300 hover:text-amber-400 focus:outline-none" aria-label="Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Nav Dropdown -->
+    <div id="mobile-nav" class="hidden md:hidden px-4 pt-2 pb-4 space-y-2 border-t border-slate-800 bg-[#0F0D1C]/95">
+      <a href="index.html" class="block py-2 text-slate-300 hover:text-amber-300">🔮 Bóc bài</a>
+      <a href="tarot.html" class="block py-2 text-amber-400 font-medium">📜 Các lá bài</a>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main id="tarot-detail-container" class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 z-10">
+
+    <!-- VIEW 1: DYNAMIC CARD DETAIL VIEW (Rendered by tarot-detail.js if ?card=slug is present) -->
+    <section id="card-detail-view" class="hidden animate-fade-up">
+      <!-- Sẽ được fill tự động bởi tarot-detail.js -->
+    </section>
+
+    <!-- VIEW 2: 78 CARDS LIST & FILTER VIEW (Default if no card parameter) -->
+    <section id="card-list-view" class="space-y-8 animate-fade-up">
+      <!-- Title & Intro -->
+      <div class="text-center space-y-3 max-w-2xl mx-auto">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold tracking-widest uppercase font-mystic">
+          <span>✦ BẢN ĐỒ HUYỀN BÍ</span>
+        </div>
+        <h1 class="font-mystic text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-wide mystic-gold-glow">
+          Bộ Bài Tarot 78 Lá
+        </h1>
+        <p class="text-slate-300 text-sm sm:text-base font-serif-sub italic">
+          Khám phá biểu tượng và ý nghĩa tâm linh sâu sắc của từng lá bài trong hành trình nhận thức.
+        </p>
+      </div>
+
+      <!-- Filters -->
+      <div class="flex flex-wrap items-center justify-center gap-2 max-w-3xl mx-auto pt-2">
+        <button data-filter="all" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm bg-amber-500 text-slate-950 font-bold transition-all">
+          Tất cả (78)
+        </button>
+        <button data-filter="major" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm bg-slate-900 text-slate-300 hover:bg-slate-800 transition-all">
+          Ẩn Chính (22)
+        </button>
+        <button data-filter="wands" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm bg-slate-900 text-slate-300 hover:bg-slate-800 transition-all">
+          🪄 Gậy (Wands)
+        </button>
+        <button data-filter="cups" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm bg-slate-900 text-slate-300 hover:bg-slate-800 transition-all">
+          🏆 Cốc (Cups)
+        </button>
+        <button data-filter="swords" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm bg-slate-900 text-slate-300 hover:bg-slate-800 transition-all">
+          🗡️ Kiếm (Swords)
+        </button>
+        <button data-filter="pentacles" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm bg-slate-900 text-slate-300 hover:bg-slate-800 transition-all">
+          🪙 Tiền (Pentacles)
+        </button>
+      </div>
+
+      <!-- Cards Grid -->
+      <div id="all-cards-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 pt-4">
+        <!-- 78 Cards will be rendered here -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-auto py-8 glass-panel border-t border-amber-500/10 text-center text-xs text-slate-400 space-y-2 z-10">
+    <p class="font-medium text-slate-300">© 2026 Tarot Reading – Khám phá thông điệp vũ trụ</p>
+    <p class="text-slate-500 italic font-serif-sub">Tarot được sử dụng cho mục đích chiêm nghiệm và giải trí.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/shuffle.js"></script>
+  <script src="assets/js/tarot-data.js"></script>
+  <script src="assets/js/tarot-detail.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
